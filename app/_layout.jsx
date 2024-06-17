@@ -3,8 +3,9 @@ import { Slot, SplashScreen, Stack } from 'expo-router'
 import { useFonts } from 'expo-font'
 import { useEffect } from 'react';
 
-SplashScreen.preventAutoHideAsync();
+import GlobalProvider from '../context/GlobalProvider';
 
+SplashScreen.preventAutoHideAsync();
 
 const RootLayout = () => {
     const [fontsLoaded, error] = useFonts({
@@ -26,15 +27,18 @@ const RootLayout = () => {
       }, [fontsLoaded, error])
 
       if(!fontsLoaded && !error) return null;
-    return (
-       <Stack>
+
+  return (
+    <GlobalProvider>
+      <Stack>
         <Stack.Screen name="index"
-        options={{headerShown: false}} />
+          options={{ headerShown: false }} />
 
         <Stack.Screen name="(auth)"
-        options={{headerShown: false}} />
-       </Stack>
-    )
+          options={{ headerShown: false }} />
+      </Stack>
+    </GlobalProvider>
+  )
 }
 
 export default RootLayout
