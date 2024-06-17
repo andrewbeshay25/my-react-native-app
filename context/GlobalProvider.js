@@ -4,7 +4,7 @@ import { getCurrentUser } from "../lib/appwrite";
 const GlobalContext = createContext();
 export const useGlobalContext = () => useContext(GlobalContext);
 
-const GlobalProvider = ({ Children }) => {
+const GlobalProvider = ({ children }) => {
     const [isLoggedIn, setisLoggedIn] = useState(false);
     const [user, setUser] = useState(null);
     const [isLoading, setisLoading] = useState(true)
@@ -38,7 +38,7 @@ const GlobalProvider = ({ Children }) => {
             isLoading
         }}
     >
-        {Children}
+        {children}
     </GlobalContext.Provider>
     )
 }
